@@ -1,0 +1,7 @@
+name: MenuTest
+version: 1.0.0
+main: com.eikefab.menulib.test.MenuTest
+author: eikefab
+commands:
+  test:
+    aliases: [menutest]
