@@ -31,6 +31,11 @@ public class ItemBuilder {
         this(material, 1);
     }
 
+    public ItemBuilder(ItemStack itemStack) {
+        this.itemStack = itemStack;
+        this.itemMeta = itemStack.getItemMeta();
+    }
+
     public ItemBuilder modifyItem(Consumer<ItemStack> consumer) {
         consumer.accept(itemStack);
 
@@ -95,6 +100,12 @@ public class ItemBuilder {
     public ItemBuilder head(String owner) {
         return modifyMeta(
                 (meta) -> {
+                    modifyItem(
+                            (item) -> {
+                                item.setDurability((short) 3);
+                            }
+                    );
+
                     final SkullMeta skullMeta = (SkullMeta) meta;
 
                     skullMeta.setOwner(owner);

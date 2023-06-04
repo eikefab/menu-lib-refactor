@@ -3,11 +3,7 @@ package com.eikefab.menulib;
 import com.eikefab.menulib.utils.ItemBuilder;
 import com.eikefab.menulib.utils.MenuUtils;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class PageMenuContext<T> extends MenuContext {
 
@@ -127,7 +123,16 @@ public class PageMenuContext<T> extends MenuContext {
     }
 
     public List<MenuItem> getContent() {
-        return getPage().stream().map(getMenu()::adapt).collect(Collectors.toList());
+        final List<MenuItem> menuItems = new ArrayList<>();
+        final List<T> content = getPage();
+
+        for (int index = 0; index < content.size(); index++) {
+            final T item = content.get(index);
+
+            menuItems.add(getMenu().adapt(item, index));
+        }
+
+        return menuItems;
     }
 
     @Override

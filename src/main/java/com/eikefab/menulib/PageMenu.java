@@ -14,7 +14,7 @@ public abstract class PageMenu<T> extends Menu {
         super(title, size);
     }
 
-    protected abstract MenuItem adapt(T item);
+    protected abstract MenuItem adapt(T item, int index);
     protected abstract List<T> content();
     protected abstract int itemCount();
     protected int maxIndex() {
