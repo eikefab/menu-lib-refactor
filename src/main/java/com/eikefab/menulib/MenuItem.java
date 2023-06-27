@@ -1,6 +1,7 @@
 package com.eikefab.menulib;
 
 import com.eikefab.menulib.utils.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -40,6 +41,10 @@ public class MenuItem {
 
     public static MenuItem of(ItemBuilder itemBuilder) {
         return new MenuItem(itemBuilder.build());
+    }
+
+    public static MenuItem of(Material material) {
+        return new MenuItem(new ItemStack(material));
     }
 
 }

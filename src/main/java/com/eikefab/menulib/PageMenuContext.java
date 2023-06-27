@@ -2,6 +2,8 @@ package com.eikefab.menulib;
 
 import com.eikefab.menulib.utils.ItemBuilder;
 import com.eikefab.menulib.utils.MenuUtils;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
@@ -125,11 +127,23 @@ public class PageMenuContext<T> extends MenuContext {
     public List<MenuItem> getContent() {
         final List<MenuItem> menuItems = new ArrayList<>();
         final List<T> content = getPage();
+        final PageMenu<T> menu = getMenu();
 
         for (int index = 0; index < content.size(); index++) {
             final T item = content.get(index);
+            final MenuItem menuItem = menu.adapt(item, index);
 
-            menuItems.add(getMenu().adapt(item, index));
+            if (menuItem == null) {
+                continue;
+            }
+
+            final ItemStack itemStack = menuItem.getItemStack();
+
+            if (itemStack == null || itemStack.getType() == Material.AIR) {
+                continue;
+            }
+
+            menuItems.add(menuItem);
         }
 
         return menuItems;
