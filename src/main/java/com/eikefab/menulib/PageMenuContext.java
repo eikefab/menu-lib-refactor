@@ -131,7 +131,7 @@ public class PageMenuContext<T> extends MenuContext {
 
         for (int index = 0; index < content.size(); index++) {
             final T item = content.get(index);
-            final MenuItem menuItem = menu.adapt(item, index);
+            final MenuItem menuItem = menu.adapt(item, index + (currentIndex * count));
 
             if (menuItem == null) {
                 continue;
